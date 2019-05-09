@@ -2,8 +2,22 @@
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900');
 
+*{
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    background-size: cover;
+    color: white;
+    background: #007a3d;
+    height: 120px;
+    margin-bottom: 10px;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
 }
 
 img {
@@ -26,7 +40,9 @@ img {
 *****************/
 
 h1 {
+    padding-top: 10px;
     font-weight: 700;
+    font-size: 35px;
 }
 
 article {
@@ -35,12 +51,24 @@ article {
     margin-bottom: 30px;
 }
 
-.nav .tag {
-    padding: 10px;
-    background-color: red;
+.nav, .tag {
+    /* padding: 10px; */
+    /* background-color: red; */
     display: inline;
-    font-weight: bold;
     color: white;
+}
+
+#navbar {
+    margin: 3px;
+    /* color: white; */
+    text-decoration: none;
+}
+
+/* #searchbar {
+} */
+
+#subtext {
+    padding-bottom: 10px;
 }
 
 
@@ -58,6 +86,7 @@ label {
 }
 
 input {
+    margin: 10px;
     padding: 10px;
     font-size: 20px;
     font-weight: bold;
@@ -71,12 +100,14 @@ textarea {
 }
 
 button {
-	border: none;
+    border: none;
+    border-radius: 10px;
 	padding: 10px;
-	background-color: red;
+	background-color: #0096d6;
 	color: white;
 	font-size: 20px;
-	font-weight: bold;
+    font-weight: bold;
+    margin: 10px;
 }
 
 
@@ -104,4 +135,22 @@ button {
 
 .content a {
     color: white;
+}
+
+/***************
+   LINK STUFF 
+***************/
+
+a:link {
+    /* text-decoration: none; */
+    color: white;
+}
+
+a:visited {
+    /* text-decoration: none; */
+    color: white;
+}
+
+a:hover {
+    color: rgb(204, 248, 204);
 }

@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.use('/public', express.static('public'));
+<<<<<<< HEAD
 
 
 // Connect to MongoDB
@@ -33,6 +34,8 @@ mongoose.connection.on('error', function() {
     console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
     process.exit(1);
 });
+=======
+>>>>>>> 8648fd6b8c99403a990256d370b68b1fa8c44ccc
 
 app.get('/', function(req, res) {
     res.render('home');
@@ -40,5 +43,5 @@ app.get('/', function(req, res) {
 
 app.listen(3000, function() {
     console.log('Listening on port 3000!');
-  });
+});
 
