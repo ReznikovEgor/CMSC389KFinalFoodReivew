@@ -30,6 +30,10 @@ app.get('/', function(req, res) {
     res.render('home');
 })
 
+app.get('/addRestaurant', function(req, res) {
+    res.render('restaurantform')
+})
+
 app.listen(3000, function() {
     console.log('Listening on port 3000!');
 });

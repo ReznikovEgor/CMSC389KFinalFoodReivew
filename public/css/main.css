@@ -94,8 +94,7 @@ input {
 textarea {
     padding: 10px;
     font-size: 20px;
-    font-weight: bold;
-    width: 80%;
+    width: 40%;
 }
 
 button {
