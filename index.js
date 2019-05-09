@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var exphbs = require('express-handlebars');
 var Restaurant = require('./models/restaurant');
 var dotenv = require('dotenv');
+var _ = require('underscore')
 
 var app = express();
 dotenv.config();
@@ -76,6 +77,23 @@ app.post('/createRestaurant', function(req, res) {
     res.redirect('/');
 })
 
+app.get('/topRestaurants', function(req,res) {
+    Restaurant.find({}, function(err, restaurants) {
+        if (err) return console.error(err);
+        _DATA = restaurants;
+        var map = new Map();
+        _.each(_DATA, function(i) {
+            map.set(i.name, i.avgRating);
+       })
+
+       map[Symbol.iterator] = function* () {
+            yield* [...this.entries()].sort((a, b) => a[1] - b[1]);
+       }
+        for (let [key, value] of map) {     // get data sorted
+            console.log(key + ' ' + value);
+        }
+})
+}); 
 app.listen(3000, function() {
     console.log('Listening on port 3000!');
 });
