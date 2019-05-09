@@ -1,16 +1,12 @@
 <article>
-    <form method="POST" action="/create">
+    <form method="POST" action="/createRestaurant">
         <div class="input-field">
             <label>Restaurant Name:</label>
-            <input type="text" name="title" size="50" placeholder="Marathon Deli...">
+            <input type="text" name="restaurantname" size="50" placeholder="Marathon Deli...">
         </div>
         <div class="input-field">
             <label>Description:</label>
-            <textarea type="text" size="50" name="content" rows="5" placeholder="Greek/American fast casual..."></textarea>
-        </div>
-         <div class="input-field">
-            <label>Hours:</label>
-            <input type="text" name="hours" size="50" placeholder="10AM - 3AM">
+            <textarea type="text" size="50" name="description" rows="5" placeholder="Greek/American fast casual..."></textarea>
         </div>
         <div class="input-field">
             <label>Cuisine:</label>
@@ -20,6 +16,6 @@
             <label>Price Range:</label>
             <input type="text" name="pricerange" size="50" placeholder="1, 2, or 3...">
         </div>
-        <button type="submit">Create Restaurant </button>
+        <button type="submit">Submit</button>
     </form>
 </article>

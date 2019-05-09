@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var exphbs = require('express-handlebars');
-var restaurant = require('./models/restaurant');
+var Restaurant = require('./models/restaurant');
 var dotenv = require('dotenv');
 
 var app = express();
@@ -30,8 +30,28 @@ app.get('/', function(req, res) {
     res.render('home');
 })
 
+//Called when a user presses the 'Add a restaurant' button
 app.get('/addRestaurant', function(req, res) {
     res.render('restaurantform')
+})
+
+//Called when a user presses the 'Submit' button
+app.post('/createRestaurant', function(req, res) {
+    var description = {
+        description: req.body.description,
+        cuisine: req.body.cuisine,
+        priceRange: req.body.pricerange
+    }
+    var restaurant = new Restaurant({
+        name: req.body.restaurantname,
+        avgRating: 0,
+        description: [description],
+        reviews: []
+    })
+    restaurant.save(function(err) {
+        if(err) throw err
+        return res.send("Restaurant added successfully!")
+    })
 })
 
 app.listen(3000, function() {

@@ -26,10 +26,6 @@ var descriptionSchema = new mongoose.Schema({
         type: String,
         required: true
     }, 
-    hours: {
-        type: String,
-        required: true
-    },
     cuisine: {
         type: String,
         required: true
@@ -46,6 +42,9 @@ var restaurantSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true
+    },
+    avgRating: {
+        type: Number,
     },
     description: [descriptionSchema],
     reviews: [reviewSchema]
