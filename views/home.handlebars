@@ -1,1 +1,35 @@
 <!-- Write home page HTML Here -->
+
+<div class="restaurants">
+    {{#each data}}
+    <div class="card">
+        {{!-- <img src="img_avatar.png" alt="Avatar" style="width:100%"> --}}
+        <div class="container">
+            <h4><b>{{this.name}}</b></h4>
+            <p>{{this.description.description}}</p>
+        </div>
+    </div> 
+
+{{!-- <style>
+    article {
+        background: lightblue;
+    }
+</style>
+<article>
+	<h2 class="title">{{this.name}}</h2> 
+	
+	<div class="content">
+	    Price Range: {{{this.description.priceRange}}}
+	</div>
+	<a href="/post/{{this.link}}">Read more...</a>
+</article> --}}
+    {{else}}
+
+<article>
+    <h1>There are no restaurants yet. :(</h1>
+    <a href="/create">There are no items listed.</a>
+</article>
+{{/each}}
+
+</div>
+

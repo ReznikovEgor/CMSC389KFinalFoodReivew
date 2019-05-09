@@ -46,7 +46,7 @@ var restaurantSchema = new mongoose.Schema({
     avgRating: {
         type: Number,
     },
-    description: [descriptionSchema],
+    description: descriptionSchema,
     reviews: [reviewSchema]
 });
 
