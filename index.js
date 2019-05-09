@@ -48,6 +48,10 @@ app.get('/', function(req, res) {
      //res.send(_DATA);
 })
 
+app.get('/restaurant/:restaurantname', function(req, res) {
+    //To be implemented
+})
+
 //Called when a user presses the 'Add a restaurant' button
 app.get('/addRestaurant', function(req, res) {
     res.render('restaurantform')
