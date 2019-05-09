@@ -89,7 +89,6 @@ input {
     margin: 10px;
     padding: 10px;
     font-size: 20px;
-    font-weight: bold;
 }
 
 textarea {
@@ -153,4 +152,22 @@ a:visited {
 
 a:hover {
     color: rgb(204, 248, 204);
+}
+
+@media (max-width: 943px) {
+    header {
+        height: 140px;
+    }
+}
+
+@media (max-width: 534px) {
+    header {
+        height: 160px;
+    }
+}
+
+@media (max-width: 476px) {
+    header {
+        height: 180px;
+    }
 }
