@@ -7,7 +7,6 @@ var exphbs = require('express-handlebars');
 var app = express();
 var restaurant = require('./models/restaurant');
 var dotenv = require('dotenv');
-var url = process.env.MONGOLAB_URI;
 
 dotenv.config();
 
@@ -17,25 +16,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.use('/public', express.static('public'));
-<<<<<<< HEAD
 
 
 // Connect to MongoDB
-console.log(process.env.MONGODB)
-mongoose.connect(process.env.MONGODB,{ useNewUrlParser: true }, function(err, db) {
-    if (err) {
-        throw err;
-    } else {
-        console.log("successfully connected to the database");
-    }
-    db.close();
+const uri = "mongodb://reznikov:GyX3kVtAYT2nphp5@cluster0-shard-00-00-w6rkg.mongodb.net:27017,cluster0-shard-00-01-w6rkg.mongodb.net:27017,cluster0-shard-00-02-w6rkg.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true"
+mongoose.connect(uri, function(err, client) {
+   if(err) {
+        console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+   }
+   console.log('Connected...');
 });
-mongoose.connection.on('error', function() {
-    console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
-    process.exit(1);
-});
-=======
->>>>>>> 8648fd6b8c99403a990256d370b68b1fa8c44ccc
 
 app.get('/', function(req, res) {
     res.render('home');
