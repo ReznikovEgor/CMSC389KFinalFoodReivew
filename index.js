@@ -26,8 +26,26 @@ mongoose.connect(uri, function(err, client) {
    console.log('Connected...');
 });
 
+// var _DATA = Restaurant.find({}, function(err, restaurants) {
+//     if (err) return console.error(err);
+//     return restaurants;
+// });
+var _DATA;
+Restaurant.find({}, function(err, restaurants) {
+    if (err) return console.error(err);
+    _DATA = restaurants;
+});
+
+//Home page
 app.get('/', function(req, res) {
-    res.render('home');
+    Restaurant.find({}, function(err, restaurants) {
+        if (err) return console.error(err);
+        _DATA = restaurants;
+    });
+    res.render('home', {
+        data: _DATA
+    });
+     //res.send(_DATA);
 })
 
 app.get('/restaurant/:restaurantname', function(req, res) {
@@ -49,13 +67,13 @@ app.post('/createRestaurant', function(req, res) {
     var restaurant = new Restaurant({
         name: req.body.restaurantname,
         avgRating: 0,
-        description: [description],
+        description: description,
         reviews: []
     })
     restaurant.save(function(err) {
         if(err) throw err
-        return res.send("Restaurant added successfully!")
     })
+    res.redirect('/');
 })
 
 app.listen(3000, function() {
