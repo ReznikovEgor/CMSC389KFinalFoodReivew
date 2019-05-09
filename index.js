@@ -1,13 +1,12 @@
 var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var exphbs = require('express-handlebars');
-var app = express();
 var restaurant = require('./models/restaurant');
 var dotenv = require('dotenv');
 
+var app = express();
 dotenv.config();
 
 app.use(logger('dev'));
