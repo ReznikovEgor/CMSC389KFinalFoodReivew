@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+app.use('/public', express.static('public'));
 
 app.get('/', function(req, res) {
     res.render('home');
@@ -17,5 +18,5 @@ app.get('/', function(req, res) {
 
 app.listen(3000, function() {
     console.log('Listening on port 3000!');
-  });
+});
 
