@@ -1,42 +1,20 @@
 <!-- Write home page HTML Here -->
-
+<div class="title-container">
+    <h2>{{title}}</h2>
+</div>
 <div class="restaurants">
     {{#each data}}
-    {{!-- <style>
-        a:link {
-            text-decoration: none;
-            color: black;
-        }
-
-        a:visited {
-            text-decoration: none;
-            color: white;
-        }
-    </style> --}}
     <a class="rest-link" href="/restaurant/{{this.name}}">
         <div class="card">
         {{!-- <img src="img_avatar.png" alt="Avatar" style="width:100%"> --}}
             <div class="container">
                 <h4><b>{{this.name}}</b></h4>
                 <p>{{this.description.description}}</p>
+                <p>Rating: {{this.avgRating}}/10</p>
+                <p>Price Rating: {{this.description.priceRange}}/3</p>
             </div>
         </div> 
     </a>
-
-
-{{!-- <style>
-    article {
-        background: lightblue;
-    }
-</style>
-<article>
-	<h2 class="title">{{this.name}}</h2> 
-	
-	<div class="content">
-	    Price Range: {{{this.description.priceRange}}}
-	</div>
-	<a href="/post/{{this.link}}">Read more...</a>
-</article> --}}
     {{else}}
 
 <article>
