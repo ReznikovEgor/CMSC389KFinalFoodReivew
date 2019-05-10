@@ -52,16 +52,15 @@ app.get('/', function(req, res) {
 app.get('/restaurant/:name', function(req, res) {
     //To be implemented
     var _name = req.params.name;
-    var _data;
     Restaurant.findOne({name: _name}, function(err, restaurant) {
         if(err) throw err
         if(!restaurant) return res.send("No restaurant of name exists")
-        data = restaurant;
+
+        res.render('restaurant', {
+            data: restaurant
+        });
     });
     //console.log(_name);
-    res.render('restaurant', {
-        data: _data
-    });
 })
 
 //Called when a user presses the 'Add a restaurant' button
