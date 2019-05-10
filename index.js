@@ -4,6 +4,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var exphbs = require('express-handlebars');
 var Restaurant = require('./models/restaurant');
+var ObjectId = require('mongodb').ObjectId;
 var dotenv = require('dotenv');
 var _ = require('underscore')
 
@@ -46,11 +47,21 @@ app.get('/', function(req, res) {
     res.render('home', {
         data: _DATA
     });
-     //res.send(_DATA);
 })
 
-app.get('/restaurant/:restaurantname', function(req, res) {
+app.get('/restaurant/:name', function(req, res) {
     //To be implemented
+    var _name = req.params.name;
+    var _data;
+    Restaurant.findOne({name: _name}, function(err, restaurant) {
+        if(err) throw err
+        if(!restaurant) return res.send("No restaurant of name exists")
+        data = restaurant;
+    });
+    //console.log(_name);
+    res.render('restaurant', {
+        data: _data
+    });
 })
 
 //Called when a user presses the 'Add a restaurant' button

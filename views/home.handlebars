@@ -2,13 +2,27 @@
 
 <div class="restaurants">
     {{#each data}}
-    <div class="card" href="/restaurant/{{this.name}}">
+    {{!-- <style>
+        a:link {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: white;
+        }
+    </style> --}}
+    <a class="rest-link" href="/restaurant/{{this.name}}">
+        <div class="card">
         {{!-- <img src="img_avatar.png" alt="Avatar" style="width:100%"> --}}
-        <div class="container">
-            <h4><b>{{this.name}}</b></h4>
-            <p>{{this.description.description}}</p>
-        </div>
-    </div> 
+            <div class="container">
+                <h4><b>{{this.name}}</b></h4>
+                <p>{{this.description.description}}</p>
+            </div>
+        </div> 
+    </a>
+
 
 {{!-- <style>
     article {

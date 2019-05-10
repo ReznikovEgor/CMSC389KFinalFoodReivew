@@ -144,19 +144,30 @@ button {
    LINK STUFF 
 ***************/
 
-a:link {
+a.navbar-link:link {
     /* text-decoration: none; */
     color: white;
 }
 
-a:visited {
+a.navbar-link:visited {
     /* text-decoration: none; */
     color: white;
 }
 
-a:hover {
+a.navbar-link:hover {
     color: rgb(204, 248, 204);
 }
+
+a.rest-link:link {
+    text-decoration: none;
+    color: black;
+}
+
+a.rest-link:visited {
+    text-decoration: none;
+    color: black;
+}
+
 
 @media (max-width: 943px) {
     header {
@@ -190,7 +201,7 @@ a:hover {
   /* On mouse-over, add a deeper shadow */
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    background-color: #ececec;
+    background-color: #f5f5f5;
 
   }
   
