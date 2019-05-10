@@ -28,7 +28,10 @@ mongoose.connect(uri, function(err, client) {
    console.log('Connected...');
 });
 
-//Store database information into _DATA
+// var _DATA = Restaurant.find({}, function(err, restaurants) {
+//     if (err) return console.error(err);
+//     return restaurants;
+// });
 var _DATA;
 Restaurant.find({}, function(err, restaurants) {
     if (err) return console.error(err);
@@ -42,12 +45,10 @@ app.get('/', function(req, res) {
         _DATA = restaurants;
     });
     res.render('home', {
-        title: "All Local Restaurants",
         data: _DATA
     });
 })
 
-//Called when viewing a restaurant's home page
 app.get('/restaurant/:name', function(req, res) {
     var _name = req.params.name;
     Restaurant.findOne({name: _name}, function(err, restaurant) {
@@ -55,7 +56,8 @@ app.get('/restaurant/:name', function(req, res) {
         if(!restaurant) return res.send("No restaurant of name exists")
 
         res.render('restaurant', {
-            data: restaurant
+            data: restaurant,
+            revData: restaurant.reviews
         });
     });
 })
@@ -78,42 +80,67 @@ app.post('/createRestaurant', function(req, res) {
         description: description,
         reviews: []
     })
-    restaurant.save(function(err) {
+    Restaurant.save(function(err) {
         if(err) throw err
     })
     res.redirect('/');
 })
 
-//Displays the top rated restaurants
+app.get('/restaurant/:name/addReview', function(req, res){
+    var _name = req.params.name;
+    Restaurant.findOne({name: _name}, function(err, restaurant) {
+        if(err) throw err
+        if(!restaurant) return res.send("No restaurant of name exists")
+        res.render('reviewform', {
+            data: restaurant
+        });
+    });
+})
+
+app.post('/restaurant/:name/createReview', function(req, res){
+    var urlName = req.params.name;
+    var resName = decodeURI(urlName);
+    Restaurant.findOne({name:resName}, function(err, restaurant){
+        if (err) return console.error(err);
+    var review = {
+        restaurantName: resName,
+        rating: req.body.rating,
+        review: req.body.review,
+        author: req.body.author
+    }
+    restaurant.reviews = restaurant.reviews.concat([review]);
+    var sum = 0;
+    for(var i = 0; i < restaurant.reviews.length; i++){
+        sum = sum + restaurant.reviews[i].rating;
+    }
+    sum = sum/restaurant.reviews.length;
+    console.log(sum)
+    restaurant.avgRating = sum;
+    restaurant.save(function(err) {
+        if(err) throw err
+    });
+});
+var returnURL = '/restaurant/'+urlName;
+    res.redirect(returnURL);
+})
+
 app.get('/topRestaurants', function(req,res) {
-    var data;
     Restaurant.find({}, function(err, restaurants) {
         if (err) return console.error(err);
-        data = restaurants;
-        var cheapest = data.sort(function(a, b) {
-            return a.price - b.price;
-        });
-       var map = new Map();
+        _DATA = restaurants;
+        var map = new Map();
         _.each(_DATA, function(i) {
             map.set(i.name, i.avgRating);
        })
        map[Symbol.iterator] = function* () {
             yield* [...this.entries()].sort((a, b) => a[1] - b[1]);
        }
-        var data_sorted = [];
         for (let [key, value] of map) {     // get data sorted
-            var restaurant = _.findWhere(_DATA, {name: key});
-            data_sorted.push(restaurant);
+            console.log(key + ' ' + value);
         }
-        data_sorted.reverse();
-        res.render('home', {
-            title: "Top Rated",
-            data: data_sorted
-        })
-    })
+})
 });
 
-//Displays the cheapest restaurants
 app.get('/cheapest', function(req,res) {
     Restaurant.find({}, function(err,restaurants) {
         if (err) return console.error(err);
@@ -126,18 +153,10 @@ app.get('/cheapest', function(req,res) {
         map[Symbol.iterator] = function* () {
             yield* [...this.entries()].sort((a, b) => a[1] - b[1]);
        }
-        var data_sorted = [];
         for (let [key, value] of map) {     // get data sorted
-            var restaurant = _.findWhere(_DATA, {name: key});
-            data_sorted.push(restaurant);
+            console.log(key + ' ' + value);
         }
-        res.render('home', {
-            title: "Cheapest",
-            data: data_sorted
-        })
     })
-
-
 })
 
 app.get('/about', function(req, res) {

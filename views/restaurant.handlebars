@@ -1,6 +1,27 @@
+<head>
+  <button type="button" id="createReview">Add a review</button> {{{body}}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+  <script>
+    $('#createReview').on('click', function() {
+      window.location.href = "/restaurant/{{data.name}}/addReview";
+    });
+  </script>
+</head>
+
 <div class="title-container">
     <h2>{{data.name}}</h2>
     {{data.description.description}}
     <br></br>
     Rating: {{data.avgRating}}/10
+</div>
+
+<div class="review">
+    {{#each revData}}
+    <div class="container">
+        <h4><b>{{this.author}}</b></h4>
+        <p>{{this.rating}}</p>
+        <p>{{this.review}}</p>
+        <br></br>
+    </div>
+    {{/each}}
 </div>
