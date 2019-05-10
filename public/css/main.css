@@ -45,9 +45,28 @@ img {
 .review {
     align-items: center;
     justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex;
+    flex-wrap: wrap; */
     margin: 30px;
+}
+
+.reviewCard {
+    display: flex;
+    flex: 1 15em;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.reviewContent {
+    margin: 20px;
+}
+
+.reviewHead {
+    width: 250px;
 }
 
 

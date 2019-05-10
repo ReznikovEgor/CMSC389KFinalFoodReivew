@@ -17,10 +17,14 @@
 
 <div class="review">
     {{#each revData}}
-    <div class="container">
-        <h4><b>{{this.author}}</b></h4>
-        <p>{{this.rating}}</p>
-        <p>{{this.review}}</p>
+    <div class="reviewCard">
+        <div class="reviewHead">
+            <h4><b>Author: {{this.author}}</b></h4>
+            <p>Rating: {{this.rating}}/10</p>
+        </div>
+        <div class="reviewContent">
+            <p>{{this.review}}</p>
+        </div>
         <br></br>
     </div>
     {{/each}}
