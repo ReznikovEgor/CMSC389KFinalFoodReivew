@@ -1,5 +1,4 @@
 <head>
-  <button type="button" id="createReview">Add a review</button> {{{body}}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
   <script>
     $('#createReview').on('click', function() {
@@ -12,7 +11,8 @@
     <h2>{{data.name}}</h2>
     {{data.description.description}}
     <br></br>
-    Rating: {{data.avgRating}}/10
+    <p>Rating: {{data.avgRating}}/10</p>
+    <button type="button" id="createReview">Add a review</button> {{{body}}}
 </div>
 
 <div class="review">
