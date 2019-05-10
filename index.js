@@ -4,9 +4,9 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var exphbs = require('express-handlebars');
 var Restaurant = require('./models/restaurant');
-var ObjectId = require('mongodb').ObjectId;
 var dotenv = require('dotenv');
-var _ = require('underscore')
+var _ = require('underscore');
+var emoji = require('emoji');
 
 var app = express();
 dotenv.config();
