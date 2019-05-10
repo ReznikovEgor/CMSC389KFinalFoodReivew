@@ -2,9 +2,12 @@
 <div class="title-container">
     <h2>{{title}}</h2>
 </div>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Restaurant" title="Search">
+
 <div class="restaurants">
     {{#each data}}
-    <a class="rest-link" href="/restaurant/{{this.name}}">
+    <a class="rest-link" href="/restaurant/{{this.name}}" name="{{this.name}}">
         <div class="card">
         {{!-- <img src="img_avatar.png" alt="Avatar" style="width:100%"> --}}
             <div class="container">
@@ -16,6 +19,8 @@
         </div> 
     </a>
     {{else}}
+
+
 
 <article>
     <h1>There are no restaurants yet. :(</h1>
@@ -29,3 +34,19 @@
     
 </div>
 
+<script>
+function myFunction() {
+    var input, filter, name;
+    input = document.getElementById("myInput");
+    filter = input.value.toLowerCase();
+    names = document.getElementsByClassName("rest-link");
+    for(var i = 0; i < names.length; i++){
+        if(!names[i].name.toLowerCase().includes(filter)){
+            names[i].hidden = true;
+        } else {
+            names[i].hidden = false;
+        }
+        
+    }
+}
+</script>
