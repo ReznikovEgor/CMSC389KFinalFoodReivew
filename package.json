@@ -25,6 +25,7 @@
     "mongodb": "^3.2.4",
     "mongoose": "^5.5.6",
     "morgan": "^1.9.1",
+    "one-liner-joke": "^1.2.0",
     "underscore": "^1.9.1"
   }
 }

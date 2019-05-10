@@ -7,6 +7,9 @@ var Restaurant = require('./models/restaurant');
 var dotenv = require('dotenv');
 var _ = require('underscore');
 var emoji = require('emoji');
+var oneLinerJoke = require('one-liner-joke');
+
+
 
 var app = express();
 dotenv.config();
@@ -42,6 +45,7 @@ app.get('/', function(req, res) {
     });
     res.render('home', {
         title: "All Local Restaurants",
+        joke: oneLinerJoke.getRandomJoke().body,
         data: _DATA
     });
 })
