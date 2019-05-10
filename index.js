@@ -6,7 +6,7 @@ var exphbs = require('express-handlebars');
 var Restaurant = require('./models/restaurant');
 var dotenv = require('dotenv');
 var _ = require('underscore');
-var emoji = require('emoji');
+var emoji = require('node-emoji');
 var oneLinerJoke = require('one-liner-joke');
 
 
@@ -44,7 +44,7 @@ app.get('/', function(req, res) {
         _DATA = restaurants;
     });
     res.render('home', {
-        title: "All Local Restaurants",
+        title: "All Local Restaurants " + emoji.get(':fork_and_knife:'),
         joke: oneLinerJoke.getRandomJoke().body,
         data: _DATA
     });
@@ -171,7 +171,7 @@ app.get('/topRestaurants', function(req,res) {
        }
        data_sorted.reverse();
        res.render('home', {
-           title: "Top Rated",
+           title: "Top Rated " + emoji.get(':exploding_head:'),
            data: data_sorted
        })
     })
@@ -195,8 +195,8 @@ app.get('/cheapest', function(req,res) {
            data_sorted.push(restaurant);
        }
        res.render('home', {
-           title: "Cheapest",
-           data: data_sorted
+           title: "Cheapest " + emoji.get(':money_with_wings:'),
+           data: data_sorted 
        })
     })
 })
