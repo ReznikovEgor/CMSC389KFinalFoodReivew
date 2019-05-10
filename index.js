@@ -50,7 +50,6 @@ app.get('/', function(req, res) {
 })
 
 app.get('/restaurant/:name', function(req, res) {
-    //To be implemented
     var _name = req.params.name;
     Restaurant.findOne({name: _name}, function(err, restaurant) {
         if(err) throw err
@@ -60,7 +59,6 @@ app.get('/restaurant/:name', function(req, res) {
             data: restaurant
         });
     });
-    //console.log(_name);
 })
 
 //Called when a user presses the 'Add a restaurant' button
@@ -81,7 +79,7 @@ app.post('/createRestaurant', function(req, res) {
         description: description,
         reviews: []
     })
-    restaurant.save(function(err) {
+    Restaurant.save(function(err) {
         if(err) throw err
     })
     res.redirect('/');
@@ -120,6 +118,10 @@ app.get('/cheapest', function(req,res) {
             console.log(key + ' ' + value);
         }
     })
+})
+
+app.get('/about', function(req, res) {
+    res.render('about');
 })
 
 app.listen(3000, function() {

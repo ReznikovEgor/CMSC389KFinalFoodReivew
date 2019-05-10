@@ -35,7 +35,10 @@ img {
 }
 
 .restaurants {
+    align-items: center;
+    justify-content: center;
     display: flex;
+    flex-wrap: wrap;
     margin: 30px;
 }
 
@@ -188,6 +191,7 @@ a.rest-link:visited {
 }
 
 .card {
+    flex: 1 15em;
     height: 150px;
     width: 250px;;
     margin: 10px;
