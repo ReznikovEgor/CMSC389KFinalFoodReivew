@@ -7,7 +7,7 @@ var Restaurant = require('./models/restaurant');
 var dotenv = require('dotenv');
 var _ = require('underscore');
 var emoji = require('node-emoji');
-var oneLinerJoke = require('one-liner-joke');
+var buzzphrase = require('buzzphrase');
 var functions = require("./function");
 var roundNums = require("./roundNum");
 
@@ -47,7 +47,7 @@ app.get('/', function(req, res) {
     });
     res.render('home', {
         title: "All Local Restaurants " + emoji.get(':fork_and_knife:'),
-        joke: oneLinerJoke.getRandomJoke().body,
+        buzz: buzzphrase.get(),
         data: _DATA
     });
 })
