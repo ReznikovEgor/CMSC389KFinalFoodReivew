@@ -7,6 +7,7 @@
     <br></br>
     <p>Rating: {{data.avgRating}}/10</p>
     <button type="button" id="createReview">Add a review</button> {{{body}}}
+    <button type="button" id="removeRes">Delete Restaurant</button>
 </div>
 
 <div class="review">
@@ -15,6 +16,7 @@
         <div class="reviewHead">
             <h4><b>Author: {{this.author}}</b></h4>
             <p>Rating: {{this.rating}}/10</p>
+            <button value="{{this._id}}" type="button" id="removeRev">Delete Review</button>
         </div>
         <div class="reviewContent">
             <p>{{this.review}}</p>
@@ -25,7 +27,30 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
 <script>
-    $('#createReview').on('click', function() {
-      window.location.href = "/restaurant/{{data.name}}/addReview";
+    $('#createReview').on('click', function () {
+        window.location.href = "/restaurant/{{data.name}}/addReview";
     });
+    $('#removeRes').on('click', function () {
+        $.ajax({
+            url: '/restaurant/{{data.name}}/removeRestaurant',
+            type: 'DELETE',
+            success: function (result) {
+                window.location.href = "/";
+            }
+        });
+    });
+
+    $('#removeRev').on('click', function() {
+        var id = $(this).val();
+        $.ajax({
+            url: '/restaurant/{{data.name}}/'+ id +'/removeReview',
+            type: 'DELETE',
+            success: function (result) {
+                window.location.href = "/restaurant/{{data.name}}"
+            }
+        })
+    });
+    
+    
+
 </script>

@@ -28,10 +28,6 @@ mongoose.connect(uri, function(err, client) {
    console.log('Connected...');
 });
 
-// var _DATA = Restaurant.find({}, function(err, restaurants) {
-//     if (err) return console.error(err);
-//     return restaurants;
-// });
 var _DATA;
 Restaurant.find({}, function(err, restaurants) {
     if (err) return console.error(err);
@@ -81,7 +77,7 @@ app.post('/createRestaurant', function(req, res) {
         description: description,
         reviews: []
     })
-    Restaurant.save(function(err) {
+    restaurant.save(function(err) {
         if(err) throw err
     })
     res.redirect('/restaurant/' + restaurant.name);
@@ -97,6 +93,35 @@ app.get('/restaurant/:name/addReview', function(req, res){
         });
     });
 })
+
+app.delete('/restaurant/:name/removeRestaurant', function(req, res) {
+    var urlName = req.params.name;
+    var resName = decodeURI(urlName);
+    Restaurant.findOneAndDelete({name:resName}, function(err, restaurant){
+        if(!restaurant) return res.send("Not Deleted");
+        res.redirect(303, '/');
+    })
+});
+
+app.delete('/restaurant/:name/:id/removeReview', function(req, res) {
+    var urlName = req.params.name;
+    var resName = decodeURI(urlName);
+    var revid = req.params.id;
+    Restaurant.findOne({name:resName}, function(err, restaurant){
+        var sum = restaurant.avgRating;
+        for(var i = 0; i < restaurant.reviews.length; i++){
+            if (restaurant.reviews[i].id == revid){
+                sum = (sum * restaurant.reviews.length) - restaurant.reviews[i].rating;
+                restaurant.reviews.splice(i,1);
+                restaurant.avgRating = sum/restaurant.reviews.length;
+                restaurant.save(function(err){
+                    if(err) throw err
+                })
+                res.redirect(303, '/restaurant/'+restaurant.name)
+            }
+        }
+    })
+});
 
 app.post('/restaurant/:name/createReview', function(req, res){
     var urlName = req.params.name;
@@ -115,7 +140,6 @@ app.post('/restaurant/:name/createReview', function(req, res){
         sum = sum + restaurant.reviews[i].rating;
     }
     sum = sum/restaurant.reviews.length;
-    console.log(sum)
     restaurant.avgRating = sum;
     restaurant.save(function(err) {
         if(err) throw err
