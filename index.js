@@ -105,6 +105,7 @@ app.get('/topRestaurants', function(req,res) {
             var restaurant = _.findWhere(_DATA, {name: key});
             data_sorted.push(restaurant);
         }
+        data_sorted.reverse();
         res.render('home', {
             title: "Top Rated",
             data: data_sorted
