@@ -45,6 +45,7 @@ app.get('/', function(req, res) {
         _DATA = restaurants;
     });
     res.render('home', {
+        title: "All Local Restaurants",
         data: _DATA
     });
 })
@@ -83,7 +84,7 @@ app.post('/createRestaurant', function(req, res) {
     Restaurant.save(function(err) {
         if(err) throw err
     })
-    res.redirect('/');
+    res.redirect('/restaurant/' + restaurant.name);
 })
 
 app.get('/restaurant/:name/addReview', function(req, res){
@@ -135,10 +136,17 @@ app.get('/topRestaurants', function(req,res) {
        map[Symbol.iterator] = function* () {
             yield* [...this.entries()].sort((a, b) => a[1] - b[1]);
        }
-        for (let [key, value] of map) {     // get data sorted
-            console.log(key + ' ' + value);
-        }
-})
+       var data_sorted = [];
+       for (let [key, value] of map) {     // get data sorted
+           var restaurant = _.findWhere(_DATA, {name: key});
+           data_sorted.push(restaurant);
+       }
+       data_sorted.reverse();
+       res.render('home', {
+           title: "Top Rated",
+           data: data_sorted
+       })
+    })
 });
 
 app.get('/cheapest', function(req,res) {
@@ -153,9 +161,15 @@ app.get('/cheapest', function(req,res) {
         map[Symbol.iterator] = function* () {
             yield* [...this.entries()].sort((a, b) => a[1] - b[1]);
        }
-        for (let [key, value] of map) {     // get data sorted
-            console.log(key + ' ' + value);
-        }
+       var data_sorted = [];
+       for (let [key, value] of map) {     // get data sorted
+           var restaurant = _.findWhere(_DATA, {name: key});
+           data_sorted.push(restaurant);
+       }
+       res.render('home', {
+           title: "Cheapest",
+           data: data_sorted
+       })
     })
 })
 
