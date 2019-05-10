@@ -1,10 +1,4 @@
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-  <script>
-    $('#createReview').on('click', function() {
-      window.location.href = "/restaurant/{{data.name}}/addReview";
-    });
-  </script>
 </head>
 
 <div class="title-container">
@@ -29,3 +23,9 @@
     </div>
     {{/each}}
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+<script>
+    $('#createReview').on('click', function() {
+      window.location.href = "/restaurant/{{data.name}}/addReview";
+    });
+</script>
