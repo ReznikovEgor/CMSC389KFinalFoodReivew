@@ -8,6 +8,8 @@ var dotenv = require('dotenv');
 var _ = require('underscore');
 var emoji = require('node-emoji');
 var oneLinerJoke = require('one-liner-joke');
+var functions = require("./function");
+var roundNums = require("./roundNum");
 
 
 
@@ -112,12 +114,18 @@ app.delete('/restaurant/:name/:id/removeReview', function(req, res) {
     var resName = decodeURI(urlName);
     var revid = req.params.id;
     Restaurant.findOne({name:resName}, function(err, restaurant){
-        var sum = restaurant.avgRating;
         for(var i = 0; i < restaurant.reviews.length; i++){
             if (restaurant.reviews[i].id == revid){
-                sum = (sum * restaurant.reviews.length) - restaurant.reviews[i].rating;
+                var oldSum = (restaurant.avgRating)*(restaurant.reviews.length);
+                var valToRemove = restaurant.reviews[i].rating;
                 restaurant.reviews.splice(i,1);
-                restaurant.avgRating = sum/restaurant.reviews.length;
+                if(restaurant.reviews.length != 0){
+                var length = restaurant.reviews.length;
+                var avg = functions.removeReviewAvg(valToRemove, oldSum, length);
+                restaurant.avgRating = roundNums.roundNum(avg);
+                } else{
+                    restaurant.avgRating = 0;
+                }
                 restaurant.save(function(err){
                     if(err) throw err
                 })
@@ -139,12 +147,11 @@ app.post('/restaurant/:name/createReview', function(req, res){
         author: req.body.author
     }
     restaurant.reviews = restaurant.reviews.concat([review]);
-    var sum = 0;
-    for(var i = 0; i < restaurant.reviews.length; i++){
-        sum = sum + restaurant.reviews[i].rating;
-    }
-    sum = sum/restaurant.reviews.length;
-    restaurant.avgRating = sum;
+    var addedAvg = parseInt(review.rating);
+    var currAvg = restaurant.avgRating;
+    var length = restaurant.reviews.length;
+    var avg = functions.addReviewAvg(addedAvg,currAvg,length);
+    restaurant.avgRating = roundNums.roundNum(avg);
     restaurant.save(function(err) {
         if(err) throw err
     });
