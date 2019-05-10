@@ -14,12 +14,7 @@ URL:
 
 ### 1. Data Format and Storage
 
-Data point fields:
-- `Field 1`: Name               `Type: String`
-- `Field 2`: Breed              `Type: String`
-- `Field 3`: Weight             `Type: Number`
-- `Field 4`: Age                `Type: Number`
-- `Field 5`: Characteristics    `Type: [String]`
+Data Stored using MongoDB
 
 Schemas: 
 ```javascript
@@ -116,19 +111,32 @@ request(rest, function (error, response, body) {
 });
 ```
 
-### 3. View Data
- 
-GET endpoint route: `/api/...`
+### 3. NPM Packages
+1. 'express'
+2. 'body-parser'
+3. 'morgan'
+4. 'mongoose'
+5. 'express-handlebars'
+6. 'dotenv'
+7. 'underscore'
+8. 'node-emoji' (NEW)
+9. 'buzzphrase' (NEW)
+
 
 ### 4. Search Data
 
-Search Field: `name`
+Search Field: `restaurantName`
 
-### 5. Navigation Pages
+### 5. Endpoints
 
 Navigation Filters
 1. Home -> `/`
 2. Sorted by Cheapest -> `/cheapest`
 3. Sorted by rating -> `/topRestaurants`
-4. about -> `/about`
-5. Alphabetical Dogs -> `/alphabetical`
+4. About -> `/about`
+5. Create Review(POST) -> `'/restaurant/:name/createReview'`
+6. Delete Review -> `'/restaurant/:name/:id/removeReview'`
+7. Delete Restaurant -> `'/restaurant/:name/removeRestaurant'`
+8. Create Restaurant(POST) -> `/createRestaurant'
+9. Get Retaurant -> `'/restaurant/:name'`
+10. Add Restaurant -> `/addRestaurant`
