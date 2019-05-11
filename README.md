@@ -147,4 +147,4 @@ Navigation Filters
 1. Restaurants
 2. Reviews
 
-[Link to website] (http://food4terps.herokuapp.com)
+[Link to website] (http://terpfoodreview.herokuapp.com)
