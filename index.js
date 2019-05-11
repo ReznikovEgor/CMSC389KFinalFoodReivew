@@ -10,6 +10,8 @@ var emoji = require('node-emoji');
 var buzzphrase = require('buzzphrase');
 var functions = require("./function");
 var roundNums = require("./roundNum");
+// var http = require('http').Server(app);
+// var io = require('socket.io')(http);
 
 
 
@@ -22,6 +24,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.use('/public', express.static('public'));
+
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket) {
+    console.log('NEW connection.');
+    socket.on('disconnect', function(){
+        console.log('Oops. A user disconnected.');
+  });
+});
 
 
 // Connect to MongoDB
@@ -85,6 +97,7 @@ app.post('/createRestaurant', function(req, res) {
     })
     restaurant.save(function(err) {
         if(err) throw err
+        io.emit('new restaurant', restaurant);
     })
     res.redirect('/restaurant/' + restaurant.name);
 })
@@ -214,6 +227,6 @@ app.get('/about', function(req, res) {
     res.render('about');
 })
 
-app.listen(process.env.PORT || 3000, function() {
-    console.log('Listening!');
+http.listen(3000, function() {
+    console.log('Example app listening on port 3000!');
 });

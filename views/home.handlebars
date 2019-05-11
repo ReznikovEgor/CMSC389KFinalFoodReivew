@@ -8,7 +8,7 @@
 </div>
 {{!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Restaurant" title="Search"> --}}
 
-<div class="restaurants">
+<div id="restaurants" class="restaurants">
     {{#each data}}
     <a class="rest-link" href="/restaurant/{{this.name}}" name="{{this.name}}">
         <div class="card">

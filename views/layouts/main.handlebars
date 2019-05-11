@@ -22,11 +22,17 @@
 </header>
 <body id="main-body">
   <button class="testbutton" type="button" id="createNew">Add a restaurant</button> {{{body}}}
+  <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
   <script>
     $('#createNew').on('click', function() {
       window.location.href = "/addRestaurant";
     });
+    var socket = io();
+    socket.on('new restaurant', function(restaurant){
+        $('#restaurants').append("<a class= \"rest-link\" href=\"/restaurant/"+ restaurant.name +"\" name=\""+restaurant.name+"\"><div class= \"card\"><div class=\"container\"><h4><b>"+restaurant.name+"</b></h4><p>"+restaurant.description.description+"</p><p>Rating: "+restaurant.avgRating+"/10</p><p>Price Rating: "+restaurant.description.priceRange+"/3</p></div></div> </a>");
+    });
+
   </script>
 </body>
 
