@@ -178,7 +178,8 @@ app.get('/topRestaurants', function(req,res) {
        }
        data_sorted.reverse();
        res.render('home', {
-           title: "Top Rated " + emoji.get(':exploding_head:'),
+           title: "Top Rated " + emoji.get(':fire:'),
+           buzz: buzzphrase.get(),
            data: data_sorted
        })
     })
@@ -203,6 +204,7 @@ app.get('/cheapest', function(req,res) {
        }
        res.render('home', {
            title: "Cheapest " + emoji.get(':money_with_wings:'),
+           buzz: buzzphrase.get(),
            data: data_sorted 
        })
     })

@@ -3,7 +3,10 @@
     <h2>{{title}}</h2>
 </div>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Restaurant" title="Search">
+<div class="title-container">
+    <input class="search" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Restaurant" title="Search">
+</div>
+{{!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by Restaurant" title="Search"> --}}
 
 <div class="restaurants">
     {{#each data}}
@@ -30,7 +33,7 @@
 
 </div>
 <div class="title-container">
-    <p>Here at Terrapin Food Reviewer Labs, we are currently working on {{buzz}}</p>
+    <p>Terrapin Food Reviewer Labs is currently working on {{buzz}}</p>
     
 </div>
 
