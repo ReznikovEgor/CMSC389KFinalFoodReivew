@@ -32,6 +32,9 @@
     socket.on('new restaurant', function(restaurant){
         $('#restaurants').append("<a class= \"rest-link\" href=\"/restaurant/"+ restaurant.name +"\" name=\""+restaurant.name+"\"><div class= \"card\"><div class=\"container\"><h4><b>"+restaurant.name+"</b></h4><p>"+restaurant.description.description+"</p><p>Rating: "+restaurant.avgRating+"/10</p><p>Price Rating: "+restaurant.description.priceRange+"/3</p></div></div> </a>");
     });
+    socket.on('new review', function(restaurant){
+        $('reivews').append("<div class=\"reviewCard\"> <div class=\"reviewHead\"> <h4><b>Author: review.author</b></h4> <p>Rating: review.rating/10</p> <button class=\"testbutton2\" value=\"review._id\" type=\"button\" id=\"removeRev\">Delete Review</button> </div> <div class=\"reviewContent\"> <p>review</p> </div> <br></br> </div>");
+    })
 
   </script>
 </body>

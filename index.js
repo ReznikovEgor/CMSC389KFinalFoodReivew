@@ -167,6 +167,7 @@ app.post('/restaurant/:name/createReview', function(req, res){
     restaurant.avgRating = roundNums.roundNum(avg);
     restaurant.save(function(err) {
         if(err) throw err
+        io.emit('new review', review);
     });
 });
 var returnURL = '/restaurant/'+urlName;
