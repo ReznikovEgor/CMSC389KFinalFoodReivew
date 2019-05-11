@@ -140,3 +140,11 @@ Navigation Filters
 8. Create Restaurant(POST) -> `/createRestaurant'
 9. Get Retaurant -> `'/restaurant/:name'`
 10. Add Restaurant -> `/addRestaurant`
+
+
+### 6. Sockets
+
+1. Restaurants
+2. Reviews
+
+[Link to website] (http://food4terps.herokuapp.com)
