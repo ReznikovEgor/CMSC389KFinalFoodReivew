@@ -10,6 +10,7 @@ Date: May 10th, 2019
 Project Topic: Local Restaurant Reviews
 
 URL: [Link to website] (http://terpfoodreview.herokuapp.com)
+
 URL: [Link to github] (https://github.com/ReznikovEgor/CMSC389KFinalFoodReivew)
  ---
 
