@@ -9,7 +9,7 @@ Date: May 10th, 2019
 
 Project Topic: Local Restaurant Reviews
 
-URL: 
+URL: [Link to website] (http://terpfoodreview.herokuapp.com)
  ---
 
 ### 1. Data Format and Storage
@@ -146,5 +146,3 @@ Navigation Filters
 
 1. Restaurants
 2. Reviews
-
-[Link to website] (http://terpfoodreview.herokuapp.com)
