@@ -27,6 +27,6 @@
     "morgan": "^1.9.1",
     "node-emoji": "^1.10.0",
     "socket.io": "^2.2.0",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   }
 }
