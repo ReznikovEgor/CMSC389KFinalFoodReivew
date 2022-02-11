@@ -21,7 +21,7 @@
     "buzzphrase": "^2.5.4",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
-    "express-handlebars": "^3.0.2",
+    "express-handlebars": "^5.3.1",
     "mongodb": "^3.2.4",
     "mongoose": "^5.5.6",
     "morgan": "^1.9.1",
